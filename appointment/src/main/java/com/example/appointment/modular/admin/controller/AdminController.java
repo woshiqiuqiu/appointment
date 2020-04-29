@@ -37,13 +37,11 @@ public class AdminController {
     /**
      * 查询医生信息
      */
-    @GetMapping("/getDoctorInfo/department/{department_name}/doctor/{doctor_name}")
+    @GetMapping("/getDoctorInfo")
     @ApiOperation(value = "查询医生信息")
-    public List<Doctor> getDoctorInfo(@PathVariable(required = false)String department_name,
-                                      @PathVariable(required = false)String doctor_name) {
-        department_name = department_name.equals("1")?null:department_name;
-        doctor_name = doctor_name.equals("1")?null:doctor_name;
-        return doctorService.selectDocInfo(department_name,doctor_name);
+    public List<Doctor> getDoctorInfo(@RequestParam(required = false)String departmentName,
+                                      @RequestParam(required = false)String doctorName) {
+        return doctorService.selectDocInfo(departmentName,doctorName);
     }
 
     /**
