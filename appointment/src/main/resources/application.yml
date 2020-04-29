@@ -1,0 +1,53 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hospital
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    servlet:
+      multipart:
+        max-file-size: 10000Mb
+        max-request-size: 100000Mb
+
+logging:
+  level:
+    root: info
+    com.example.appointment: debug
+  file: log/system.log
+
+mconfig:
+  swagger-ui-open: true  #是否开启swagger接口文档
+
+mybatis-plus:
+  mapper-locations: classpath*:com/example/appointment/**/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: ID_WORKER
+      db-type: oracle
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+upload:
+  path: ./upload/ #文件上传路径
+# 上传文件相关
+  #    设置freemarker
+  freemarker:
+    allow-request-override: false
+    #    开发过程建议关闭缓存
+    cache: true
+    check-template-location: false
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    settings:
+      classic_compatible: true
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+
+    # 默认后缀就是.ftl
+    suffix: .ftl
+    template-loader-path: classPath:/templates/code/

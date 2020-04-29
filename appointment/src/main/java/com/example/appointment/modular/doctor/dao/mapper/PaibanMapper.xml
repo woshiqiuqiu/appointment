@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.doctor.dao.PaibanMapper">
+
+    <select id="one" resultType="com.example.appointment.modular.doctor.entity.Paiban">
+        select d.doctor_name,d.doctor_id,dep.department_name,p.one,p.two,p.three,p.four,p.five,p.six,p.seven
+				from doctor d
+				left join paiban p on d.doctor_id = p.doctor_id
+				left join department dep on d.department_id = dep.department_id
+    </select>
+    <select id="two" resultType="com.example.appointment.modular.doctor.entity.Paiban">
+        select d.doctor_name,d.doctor_id
+        from doctor d, paiban p
+        where d.doctor_id=p.doctor_id
+        and p.two  != '无班'
+        and d.dstate!=3
+    </select>
+    <select id="three" resultType="com.example.appointment.modular.doctor.entity.Paiban">
+        select d.doctor_name,d.doctor_id
+        from doctor d, paiban p
+        where d.doctor_id=p.doctor_id
+        and p.three  != '无班'
+        and d.dstate!=3
+    </select>
+    <select id="four" resultType="com.example.appointment.modular.doctor.entity.Paiban">
+        select d.doctor_name,d.doctor_id
+        from doctor d, paiban p
+        where d.doctor_id=p.doctor_id
+        and p.four  != '无班'
+        and d.dstate!=3
+    </select>
+    <select id="five" resultType="com.example.appointment.modular.doctor.entity.Paiban">
+        select d.doctor_name,d.doctor_id
+        from doctor d, paiban p
+        where d.doctor_id=p.doctor_id
+        and p.five  != '无班'
+        and d.dstate!=3
+    </select>
+    <select id="six" resultType="com.example.appointment.modular.doctor.entity.Paiban">
+        select d.doctor_name,d.doctor_id
+        from doctor d, paiban p
+        where d.doctor_id=p.doctor_id
+        and p.six  != '无班'
+        and d.dstate!=3
+    </select>
+    <select id="seven" resultType="com.example.appointment.modular.doctor.entity.Paiban">
+        select d.doctor_name,d.doctor_id
+        from doctor d, paiban p
+        where d.doctor_id=p.doctor_id
+         and p.seven  != '无班'
+         and d.dstate!=3
+    </select>
+
+
+</mapper>

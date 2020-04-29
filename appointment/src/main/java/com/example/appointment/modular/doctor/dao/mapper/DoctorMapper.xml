@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.doctor.dao.DoctorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.appointment.modular.doctor.entity.Doctor">
+        <id column="doctor_id" property="doctorId" />
+        <result column="doctor_name" property="doctorName" />
+        <result column="doctor_sex" property="doctorSex" />
+        <result column="department_id" property="departmentId" />
+        <result column="dstate" property="dstate" />
+    </resultMap>
+
+    <sql id="baseField" >
+        doc.doctor_id
+        doc.doctor_name
+        doc.doctor_sex
+        doc.department_id
+        doc.dstate
+        doc.id_card
+    </sql>
+
+    <select id="selectDocInfo" resultType="com.example.appointment.modular.doctor.entity.Doctor">
+        select doc.doctor_name,doctor_sex,dep.department_name ,doc.id_card,u.telphone
+            from doctor doc
+            left join department dep on doc.department_id=dep.department_id
+            left join user u on doc.id_card = u.id_card
+            where 1=1
+            <if test='department_name!=null and department_name != ""'>
+                AND department_name like concat(concat('%',#{department_name}), '%')
+            </if>
+            <if test='doctor_name!=null and doctor_name != ""'>
+                AND doctor_name like concat(concat('%',#{doctor_name}), '%')
+            </if>
+    </select>
+
+</mapper>

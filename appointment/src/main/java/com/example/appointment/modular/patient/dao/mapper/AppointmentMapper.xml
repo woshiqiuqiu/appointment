@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.patient.dao.AppointmentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.appointment.modular.patient.entity.Appointment">
+        <id column="appointment_id" property="appointmentId" />
+        <result column="appointment_name" property="appointmentName" />
+        <result column="appointment_department" property="appointmentDepartment" />
+        <result column="appointment_time" property="appointmentTime" />
+        <result column="appointment_type" property="appointmentType" />
+        <result column="appointment_remarks" property="appointmentRemarks" />
+        <result column="patient_id" property="patientId" />
+    </resultMap>
+    <select id="selectInfo" resultType="com.example.appointment.modular.patient.entity.Appointment">
+        select doc.*,dep.department_name,u.telphone
+            from doctor doc
+            left join department dep on doc.department_id=dep.department_id
+            left join user u on doc.id_card = u.id_card
+    </select>
+
+    <select id="selectAppointment" resultType="com.example.appointment.modular.patient.entity.Appointment">
+        	select DISTINCT a.*,d.doctor_name
+				from appointment a
+				left join doctor d on a.department_id = d.department_id
+				left join paiban p on d.doctor_id = p.doctor_id
+				where p.one!= '无班'
+				and p.one!= '无班'
+				and p.two!= '无班'
+				and p.three!= '无班'
+				and p.four!= '无班'
+				and p.five!= '无班'
+				and p.six!= '无班'
+				and p.seven!= '无班'
+    </select>
+</mapper>

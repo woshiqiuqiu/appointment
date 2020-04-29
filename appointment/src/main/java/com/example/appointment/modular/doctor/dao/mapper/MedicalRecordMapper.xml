@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.doctor.dao.MedicalRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.appointment.modular.doctor.entity.MedicalRecord">
+        <id column="recard_id" property="recardId" />
+        <result column="patient_id" property="patientId" />
+        <result column="sex" property="sex" />
+        <result column="age" property="age" />
+        <result column="time" property="time" />
+        <result column="historyOfInfection" property="historyOfInfection" />
+        <result column="allergyHistory" property="allergyHistory" />
+        <result column="chiefComplaint" property="chiefComplaint" />
+        <result column="historyOfDisease" property="historyOfDisease" />
+        <result column="HistoryOfPresentIllness" property="HistoryOfPresentIllness" />
+        <result column="department_id" property="departmentId" />
+    </resultMap>
+
+    <select id="selectMed" resultType="com.example.appointment.modular.doctor.entity.MedicalRecord">
+        select med.*,p.name
+        from medicalrecord med
+        left join patient p on med.patient_id = p.patient_id
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.appointment.modular.patient.dao.PatientMapper">
+
+    <select id="selectPatById" resultType="com.example.appointment.modular.patient.entity.Patient">
+        select DISTINCT p.patient_id
+        from medicalrecord med
+        left join patient p on med.patient_id = p.patient_id
+        where p.name = #{name}
+    </select>
+
+    <select id="getPatientInfo" resultType="com.example.appointment.modular.patient.entity.Patient">
+        select p.name name,p.sex,p.age,a.appointment_department department,a.appointment_type type
+        from patient p
+        left join appointment a on p.patient_id = a.patient_id
+        where 1=1
+        <if test='name!=null and name != ""'>
+            AND name like concat(concat('%',#{name}), '%')
+        </if>
+    </select>
+
+</mapper>
